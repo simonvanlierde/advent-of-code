@@ -6,8 +6,11 @@
     "jupyter-server>=2.17.0",
     "jupyter>=1.1.1",
     "numpy>=2.2.2",
+    "pandas>=2.3.3",
+    "plotly>=6.5.0",
+    "seaborn>=0.13.2",
     "tqdm>=4.67.1",
-  ]
+]
   description = "My advent of code solutions"
   name = "advent-of-code"
   readme = "README.md"
