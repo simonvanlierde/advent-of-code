@@ -1,10 +1,12 @@
-"""Common utilities for the advent of code problems."""
+"""Utilities for parsing 2D text grids into dictionaries with complex number keys."""
 
 from typing import TypeVar
 
+ObjectType = TypeVar("ObjectType")
 
-### 2D grid utilities ###
-def parse_grid(data: str) -> dict[complex, str]:
+
+### Main parsing utilities
+def text_to_dict(data: str) -> dict[complex, str]:
     """Parse grid data into a dictionary with complex coordinates."""
     return {
         x + y * 1j: char
@@ -42,9 +44,6 @@ def get_grid_object(grid: dict[complex, str], position: complex, allowed_objects
     return obj
 
 
-ObjectType = TypeVar("ObjectType")
-
-
 def find_object_in_grid(grid: dict[complex, ObjectType], obj: ObjectType) -> complex:
     """Find object position in grid."""
     for position, value in grid.items():
@@ -59,22 +58,16 @@ def find_objects_in_grid(grid: dict[complex, ObjectType], obj: ObjectType) -> li
     return [position for position, value in grid.items() if value == obj]
 
 
-## Directions ##
-def get_orthogonal_directions() -> list[complex]:
-    """Return the 4 orthogonal directions in a grid."""
-    return [1, 1j, -1, -1j]
+### Directions
+ORTHOGONAL_OFFSETS_COMPLEX = [1, 1j, -1, -1j]
+OCTAGONAL_OFFSETS_COMPLEX = [1, 1 + 1j, 1j, -1 + 1j, -1, -1 - 1j, -1j, 1 - 1j]
 
 
 def get_orthogonal_neighbors(position: complex) -> list[complex]:
-    """Return the 4 direct neighbors of a position in a grid."""
-    return [position + d for d in get_orthogonal_directions()]
-
-
-def get_octagonal_directions() -> list[complex]:
-    """Return the 8 directions in a grid."""
-    return [1, 1 + 1j, 1j, -1 + 1j, -1, -1 - 1j, -1j, 1 - 1j]
+    """Return the 4 direct neighbors of a complex grid position."""
+    return [position + d for d in ORTHOGONAL_OFFSETS_COMPLEX]
 
 
 def get_octagonal_neighbors(position: complex) -> list[complex]:
-    """Return the 8 neighbors of a  in a grid."""
-    return [position + d for d in get_octagonal_directions()]
+    """Return the 8 neighbors of a complex grid position."""
+    return [position + d for d in OCTAGONAL_OFFSETS_COMPLEX]
