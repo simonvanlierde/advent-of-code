@@ -1,6 +1,7 @@
 """Utilities for parsing 2D text grids into Numpy arrays."""
 
 import numpy as np
+from scipy.spatial.distance import pdist
 
 
 ### Main parsing utilities
@@ -51,3 +52,44 @@ OCTAGONAL_OFFSETS_TUPLE = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1),
 # Kernels for convolution-based neighbor counting
 ORTHOGONAL_KERNEL = np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]], dtype=int)
 OCTAGONAL_KERNEL = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]], dtype=int)
+
+
+### Distance calculations
+def find_closest_pair_indices(
+    pts: np.ndarray,
+    *,
+    num_closest_pairs: int = 1_000,
+    invert_order: bool = False,
+    cut_off_higher_partition: bool = True,
+    metric: str = "euclidean",
+) -> list[tuple[int, int]]:
+    """Find the closest or farthest pairs for an array of points."""
+    # Calculate pairwise distances using scipy pdist
+    dists = pdist(pts, metric=metric)
+
+    # Adjust number of closest pairs k if necessary
+    k = min(num_closest_pairs, len(dists))
+
+    if not invert_order:
+        # First, we can use argpartition to efficiently get the indices of the k smallest distances
+        partitioned = np.argpartition(dists, k - 1)[:k]
+
+        # Then, sort these k distances to get them in exact order
+        sorted_k = partitioned[np.argsort(dists[partitioned])]
+    else:
+        # Reverse the ordering
+        partitioned = np.argpartition(-dists, k - 1)[:k]
+        sorted_k = partitioned[np.argsort(-dists[partitioned])]
+
+    if cut_off_higher_partition:
+        final_idx = sorted_k
+    else:
+        # Include all remaining indices after the sorted k
+        remaining = np.setdiff1d(np.arange(len(dists)), sorted_k, assume_unique=True)
+        final_idx = np.concatenate([sorted_k, remaining])
+
+    # Get upper triangle indices
+    i_idx, j_idx = np.triu_indices(len(pts), k=1)
+
+    # Return the indices of the closest pairs in the original point-array
+    return list(zip(i_idx[final_idx], j_idx[final_idx], strict=True))
