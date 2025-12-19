@@ -34,7 +34,7 @@ def check_time(
     *args: Any,
     number: int = 100,
     repeat_times: int = 5,
-    unit: TimeUnit = TimeUnit.MILLISECONDS,
+    unit: TimeUnit | str = TimeUnit.MILLISECONDS,
     **kwargs: Any,
 ) -> float:
     """Check average execution time of a function over multiple runs.
@@ -47,6 +47,9 @@ def check_time(
         repeat_times: Number of timing runs to perform
         unit: Time unit for the result ("s" for seconds, "ms" for milliseconds, "us" for microseconds)
     """
+    if isinstance(unit, str):
+        unit = TimeUnit(unit)
+
     times = repeat(lambda: func(*args, **kwargs), repeat=repeat_times, number=number)
     avg_time_s = min(times) / number
     return avg_time_s * unit.get_multiplier()
