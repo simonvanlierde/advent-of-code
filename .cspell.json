@@ -1,0 +1,23 @@
+{
+  "version": "0.2",
+  "ignorePaths": [".git/{info,lfs,logs,refs,objects}/**", ".git/{index,*refs,*HEAD}", ".venv/**", "__pychache__/**"],
+  "dictionaryDefinitions": [],
+  "dictionaries": ["cpp", "data-science", "filetypes", "public-licenses", "python"],
+  "words": [
+    "aocd",
+    "argpartition",
+    "dists",
+    "figsize",
+    "linprog",
+    "joltage",
+    "joltages",
+    "milp",
+    "pdist",
+    "perflint",
+    "pyupgrade",
+    "setdiff",
+    "triu"
+  ],
+  "ignoreWords": ["Shareon"],
+  "import": ["~/.config/cspell/cspell.config.yaml"]
+}

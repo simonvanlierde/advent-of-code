@@ -1,7 +1,7 @@
 """Utilities for parsing 2D text grids into Numpy arrays."""
 
 import numpy as np
-from scipy.spatial.distance import pdist
+from scipy.spatial.distance import _MetricKind, pdist
 
 
 ### Main parsing utilities
@@ -61,7 +61,7 @@ def find_closest_pair_indices(
     num_closest_pairs: int = 1_000,
     invert_order: bool = False,
     cut_off_higher_partition: bool = True,
-    metric: str = "euclidean",
+    metric: _MetricKind = "euclidean",
 ) -> list[tuple[int, int]]:
     """Find the closest or farthest pairs for an array of points."""
     # Calculate pairwise distances using scipy pdist

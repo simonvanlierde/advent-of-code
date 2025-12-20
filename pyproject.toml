@@ -1,15 +1,11 @@
 [project]
   dependencies = [
-    "advent-of-code-data[nb]>=2.1.0",
+    "advent-of-code-data[nb]>=2.1.1",
     "ipykernel>=6.29.5",
-    # Explicitly import jupyter-server >= 2.17.0 to ensure python 3.14 compatibility
-    "jupyter-server>=2.17.0",
     "jupyter>=1.1.1",
     "numpy>=2.2.2",
     "pandas>=2.3.3",
-    "plotly>=6.5.0",
     "scipy>=1.16.3",
-    "seaborn>=0.13.2",
     "tqdm>=4.67.1",
   ]
   description = "My advent of code solutions"
@@ -17,6 +13,10 @@
   readme = "README.md"
   requires-python = ">=3.13"
   version = "0.1.0"
+
+[dependency-groups]
+  2025 = ["seaborn>=0.13.2", "shapely>=2.1.2"]
+  dev  = ["pre-commit>=4.5.0", "ruff>=0.14.10"]
 
 [tool.ruff]
   fix            = true
@@ -33,12 +33,12 @@
       "C4",     # flake8-comprehensions (fixes iterable comprehensions)
       "C90",    # mccabe
       "D",      # pydocstyle
-      "DTZ",    # flake8-datetimez (checks for naive datetime uses without timezone)
+      "DTZ",    # flake8-datetimez (checks for naive datetime uses without timezone) # cSpell:ignore datetimez
       "E",      # pycodestyle errors
       "EM",     # flake8-errmsgs (checks for error messages)
       "FBT",    # flake8-boolean-trap
       "FIX",    # flake8-fixme
-      "FLY",    # flynt (replaces `str.join` calls with f-strings)
+      "FLY",    # flynt (replaces `str.join` calls with f-strings) # cSpell:ignore flynt
       "FURB",   # refurb (refurbishes code)
       "G",      # flake8-logging-format
       "I",      # isort
@@ -73,8 +73,8 @@
       "D",      # pydocstyle
       "E",      # pycodestyle errors
       "EM",     # flake8-errmsgs (checks for error messages)
-      "FLY",    # flynt (replaces `str.join` calls with f-strings)
-      "FURB",   # refurb (refurbishes code)
+      "FLY",    # flynt (replaces `str.join` calls with f-strings) # cSpell:ignore flynt
+      "FURB",   # refurb (refurbishes code) # cSpell:ignore FURB
       "G",      # flake8-logging-format
       "I",      # isort
       "ICN",    # flake8-import-conventions
@@ -117,6 +117,7 @@
       "ISC001", # single-line-implicit-string-concatenation
       "ISC002", # multi-line-implicit-string-concatenation
       "RET504", # unnecessary-assign
+      "S101",   # asserts are fine because we are not in production code
       "S311",   # no cryptographic randomness needed for AoC
       "W191",   # tab-indentation
     ]
@@ -127,6 +128,3 @@
     [tool.ruff.lint.pylint]
       allow-magic-value-types = ["int", "str"]
       max-args                = 10
-
-[dependency-groups]
-  dev = ["pre-commit>=4.5.0"]
