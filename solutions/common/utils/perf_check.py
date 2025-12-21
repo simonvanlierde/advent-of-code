@@ -2,7 +2,7 @@
 
 from enum import Enum
 from timeit import repeat
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -30,12 +30,7 @@ class TimeUnit(str, Enum):
 
 
 def check_time(
-    func: Callable,
-    *args: Any,
-    number: int = 100,
-    repeat_times: int = 5,
-    unit: TimeUnit | str = TimeUnit.MILLISECONDS,
-    **kwargs: Any,
+    func: Callable, *args: str, number: int = 100, repeat_times: int = 5, unit: TimeUnit | str = TimeUnit.MILLISECONDS
 ) -> float:
     """Check average execution time of a function over multiple runs.
 
@@ -50,6 +45,6 @@ def check_time(
     if isinstance(unit, str):
         unit = TimeUnit(unit)
 
-    times = repeat(lambda: func(*args, **kwargs), repeat=repeat_times, number=number)
+    times = repeat(lambda: func(*args), repeat=repeat_times, number=number)
     avg_time_s = min(times) / number
     return avg_time_s * unit.get_multiplier()
