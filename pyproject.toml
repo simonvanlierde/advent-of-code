@@ -4,8 +4,6 @@
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
     "numpy>=2.2.2",
-    "pandas>=2.3.3",
-    "scipy>=1.16.3",
     "tqdm>=4.67.1",
   ]
   description = "My advent of code solutions"
@@ -15,7 +13,7 @@
   version = "0.1.0"
 
 [dependency-groups]
-  2025 = ["seaborn>=0.13.2", "shapely>=2.1.2"]
+  2025 = ["pandas>=2.3.3", "scipy>=1.16.3", "seaborn>=0.13.2", "shapely>=2.1.2"]
   dev  = ["pre-commit>=4.5.0", "ruff>=0.14.10"]
 
 [tool.ruff]
@@ -44,8 +42,8 @@
 
       # Project-specific ignores
       "S101", # assert is used for checking example solutions
-      "S311",  # no cryptographic randomness needed for AoC
-      "T201",  # print is used for showing results
+      "S311", # no cryptographic randomness needed for AoC
+      "T201", # print is used for showing results
     ]
 
     [tool.ruff.lint.pydocstyle]
