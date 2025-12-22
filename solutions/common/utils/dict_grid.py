@@ -6,7 +6,7 @@ ObjectType = TypeVar("ObjectType")
 
 
 ### Main parsing utilities
-def text_to_dict(data: str) -> dict[complex, str]:
+def text_to_grid_dict(data: str) -> dict[complex, str]:
     """Parse grid data into a dictionary with complex coordinates."""
     return {
         x + y * 1j: char

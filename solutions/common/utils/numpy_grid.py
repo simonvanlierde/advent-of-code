@@ -4,7 +4,7 @@ import numpy as np
 
 
 ### Main parsing utilities
-def text_to_array(data: str) -> np.ndarray:
+def text_to_array_grid(data: str) -> np.ndarray:
     """Convert raw text data directly to 2D numpy array."""
     # Parse lines
     lines = data.strip().splitlines()

@@ -18,33 +18,52 @@ class TimeUnit(str, Enum):
     def get_multiplier(self) -> float:
         """Get multiplier to convert seconds to the specified unit."""
         match self:
-            case self.SECONDS:
+            case TimeUnit.SECONDS:
                 return 1.0
-            case self.MILLISECONDS:
+            case TimeUnit.MILLISECONDS:
                 return 1_000.0
-            case self.MICROSECONDS:
+            case TimeUnit.MICROSECONDS:
                 return 1_000_000.0
             case _:
-                msg = f"Unsupported time unit: {self}"
+                msg = f"Unknown time unit: {self}"
                 raise ValueError(msg)
 
+    def __str__(self) -> str:
+        """Print microseconds with the proper symbol."""
+        if self == TimeUnit.MICROSECONDS:
+            return "μs"
+        return self.value
 
-def check_time(
-    func: Callable, *args: str, number: int = 100, repeat_times: int = 5, unit: TimeUnit | str = TimeUnit.MILLISECONDS
+
+def time_solution(
+    func: Callable,
+    input_data: str,
+    *args: object,
+    iterations: int = 100,
+    runs: int = 5,
+    time_unit: TimeUnit | str = TimeUnit.MILLISECONDS,
+    print_result: bool = True,
+    **kwargs: object,
 ) -> float:
-    """Check average execution time of a function over multiple runs.
+    """Check average execution time of a solution function.
 
     Args:
-        func: Function to time
-        *args: Positional arguments to pass to the function
-        **kwargs: Keyword arguments to pass to the function
-        number: Number of executions per timing run
-        repeat_times: Number of timing runs to perform
-        unit: Time unit for the result ("s" for seconds, "ms" for milliseconds, "us" for microseconds)
+        func: Solution function to time
+        input_data: Main input data to pass to the function
+        *args: Optional positional arguments to pass to the function
+        iterations: Number of executions per timing run
+        runs: Number of timing runs to perform
+        time_unit: Time unit for the result ("s" for seconds, "ms" for milliseconds, "us" for microseconds)
+        print_result: Whether to print the timing result
+        **kwargs: Optional keyword arguments to pass to the function
     """
-    if isinstance(unit, str):
-        unit = TimeUnit(unit)
+    if isinstance(time_unit, str):
+        time_unit = TimeUnit(time_unit)
 
-    times = repeat(lambda: func(*args), repeat=repeat_times, number=number)
-    avg_time_s = min(times) / number
-    return avg_time_s * unit.get_multiplier()
+    times = repeat(lambda: func(input_data, *args, **kwargs), repeat=runs, number=iterations)
+    avg_time = min(times) / iterations * time_unit.get_multiplier()
+
+    if print_result:
+        print(f"{func.__name__} takes {avg_time:.2f} {time_unit}")
+
+    return avg_time
