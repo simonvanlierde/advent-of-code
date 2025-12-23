@@ -18,6 +18,6 @@
     "setdiff",
     "triu"
   ],
-  "ignoreWords": ["Shareon", "aeiou"],
+  "ignoreWords": ["Shareon", "aeiou", "Karp"],
   "import": ["~/.config/cspell/cspell.config.yaml"]
 }
