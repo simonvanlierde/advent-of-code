@@ -12,29 +12,20 @@ if TYPE_CHECKING:
 
 ### Correctness check
 def check_example(
-    func: Callable,
-    example: Example,
-    part: Literal["a", "b"] = "a",
-    *args: object,
-    print_result: bool = True,
-    **kwargs: object,
-) -> bool:
+    func: Callable, example: Example, part: Literal["a", "b"] = "a", *args: object, **kwargs: object
+) -> None:
     """Check a solution function against example."""
     func_answer = str(func(example.input_data, *args, **kwargs))
     example_answer = example.answer_a if part == "a" else example.answer_b
     if func_answer == example_answer:
-        if print_result:
-            print(
-                f"{func.__name__} found answer {example_answer},"
-                f" which is the correct solution for part {part.capitalize()}!"
-            )
-        return True
-    if print_result:
         print(
-            f"{func.__name__} found answer {func_answer},"
-            f" but the correct answer for part {part.capitalize()} is {example_answer}."
+            f"{func.__name__} found answer {example_answer},"
+            f" which is the correct solution for part {part.capitalize()}!"
         )
-    return False
+
+    else:
+        msg = f"{func.__name__} returned {func_answer}, but expected {example_answer} for part {part.capitalize()}."
+        raise AssertionError(msg)
 
 
 ### Performance timer
