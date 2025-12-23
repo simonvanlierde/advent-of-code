@@ -2,12 +2,42 @@
 
 from enum import Enum
 from timeit import repeat
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
+    from aocd.examples import Example
 
+
+### Correctness check
+def check_example(
+    func: Callable,
+    example: Example,
+    part: Literal["a", "b"] = "a",
+    *args: object,
+    print_result: bool = True,
+    **kwargs: object,
+) -> bool:
+    """Check a solution function against example."""
+    func_answer = str(func(example.input_data, *args, **kwargs))
+    example_answer = example.answer_a if part == "a" else example.answer_b
+    if func_answer == example_answer:
+        if print_result:
+            print(
+                f"{func.__name__} found answer {example_answer},"
+                f" which is the correct solution for part {part.capitalize()}!"
+            )
+        return True
+    if print_result:
+        print(
+            f"{func.__name__} found answer {func_answer},"
+            f" but the correct answer for part {part.capitalize()} is {example_answer}."
+        )
+    return False
+
+
+### Performance timer
 class TimeUnit(str, Enum):
     """Time units for performance measurement."""
 
