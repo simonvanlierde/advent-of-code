@@ -4,6 +4,7 @@
   "dictionaryDefinitions": [],
   "dictionaries": ["cpp", "data-science", "filetypes", "public-licenses", "python"],
   "words": [
+    "akitas",
     "aocd",
     "argpartition",
     "dists",
@@ -17,7 +18,8 @@
     "perflint",
     "pyupgrade",
     "setdiff",
-    "triu"
+    "triu",
+    "vizslas"
   ],
   "ignoreWords": ["Shareon", "aeiou", "Karp", "abcdffaa"],
   "import": ["~/.config/cspell/cspell.config.yaml"]
