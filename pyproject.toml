@@ -12,13 +12,14 @@
   requires-python = ">=3.13"
   version = "0.1.0"
 
+[build-system]
+  build-backend = "uv_build"
+  requires      = ["uv_build>=0.10.7,<0.11.0"]
+
 [dependency-groups]
-2015 = [
-    "jq>=1.10.0",
-    "networkx>=3.6.1",
-]
+  2015 = ["jq>=1.10.0", "networkx>=3.6.1"]
   2025 = ["pandas>=2.3.3", "scipy>=1.16.3", "seaborn>=0.13.2", "shapely>=2.1.2"]
-  dev  = ["pre-commit>=4.5.0", "ruff>=0.14.10"]
+  dev  = ["pre-commit>=4.5.0", "ruff>=0.14.10", "ty>=0.0.20"]
 
 [tool.ruff]
   fix            = true
@@ -56,3 +57,6 @@
     [tool.ruff.lint.pylint]
       allow-magic-value-types = ["int", "str"]
       max-args                = 10
+
+[tool.uv.build-backend]
+  module-name = "aoc_utils"
