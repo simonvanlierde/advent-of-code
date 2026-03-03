@@ -1,9 +1,5 @@
 """Utilities for parsing 2D text grids into dictionaries with complex number keys."""
 
-from typing import TypeVar
-
-ObjectType = TypeVar("ObjectType")
-
 
 ### Main parsing utilities
 def text_to_grid_dict(data: str) -> dict[complex, str]:
@@ -44,7 +40,7 @@ def get_grid_object(grid: dict[complex, str], position: complex, allowed_objects
     return obj
 
 
-def find_object_in_grid(grid: dict[complex, ObjectType], obj: ObjectType) -> complex:
+def find_object_in_grid[ObjectType](grid: dict[complex, ObjectType], obj: ObjectType) -> complex:
     """Find object position in grid."""
     for position, value in grid.items():
         if value == obj:
@@ -53,7 +49,7 @@ def find_object_in_grid(grid: dict[complex, ObjectType], obj: ObjectType) -> com
     raise ValueError(err_msg)
 
 
-def find_objects_in_grid(grid: dict[complex, ObjectType], obj: ObjectType) -> list[complex]:
+def find_objects_in_grid[ObjectType](grid: dict[complex, ObjectType], obj: ObjectType) -> list[complex]:
     """Find object positions in grid."""
     return [position for position, value in grid.items() if value == obj]
 

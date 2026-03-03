@@ -1,4 +1,4 @@
-"""Thread workers need to be in a python file to be picklable."""  # noqa: INP001 # Can't create packages whose name starts with a number
+"""Thread workers need to be in a python file to be picklable."""
 
 from hashlib import md5
 from typing import TYPE_CHECKING

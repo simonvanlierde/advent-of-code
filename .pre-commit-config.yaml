@@ -17,9 +17,10 @@ repos:
           - mdformat-gfm>=1.0.0 # Support GitHub Flavored Markdown.
 
   - repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v9.4.0
+    rev: v9.7.0
     hooks:
       - id: cspell # Spell check files.
+        args: ["--config", ".cspell.json"]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -36,19 +37,19 @@ repos:
         args: ["--markdown-linebreak-ext", "md"] # Preserve Markdown hard line breaks.
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.407
+    rev: v1.1.408
     hooks:
       - id: pyright # Type-checking
         # Explicit args are needed to avoid pyright from using the system Python
         args: ["-p", "pyproject.toml", "--pythonpath", ".venv/bin/python"]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.10
+    rev: v0.15.4
     hooks:
       - id: ruff-check # Lint code
       - id: ruff-format # Format code
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.18
+    rev: 0.10.7
     hooks:
       - id: uv-lock # Update the uv lockfile
