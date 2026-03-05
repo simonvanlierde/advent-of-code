@@ -1,55 +1,55 @@
 repos:
-  - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
+-   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
     rev: v0.9.0
     hooks:
-      - id: pre-commit-update # Autoupdate pre-commit hooks
+    -   id: pre-commit-update # Autoupdate pre-commit hooks
 
-  - repo: https://github.com/gitleaks/gitleaks
+-   repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.0
     hooks:
-      - id: gitleaks # Check for secrets
+    -   id: gitleaks # Check for secrets
 
-  - repo: https://github.com/executablebooks/mdformat
+-   repo: https://github.com/executablebooks/mdformat
     rev: 1.0.0
     hooks:
-      - id: mdformat # Format Markdown files.
+    -   id: mdformat # Format Markdown files.
         additional_dependencies:
-          - mdformat-gfm>=1.0.0 # Support GitHub Flavored Markdown.
+        -   mdformat-gfm>=1.0.0 # Support GitHub Flavored Markdown.
 
-  - repo: https://github.com/streetsidesoftware/cspell-cli
+-   repo: https://github.com/streetsidesoftware/cspell-cli
     rev: v9.7.0
     hooks:
-      - id: cspell # Spell check files.
+    -   id: cspell # Spell check files.
         args: ["--config", ".cspell.json"]
 
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      - id: check-added-large-files
-      - id: check-case-conflict # Check for files with names that differ only in case.
-      - id: check-executables-have-shebangs
-      - id: check-shebang-scripts-are-executable
-      - id: check-toml
-      - id: check-yaml
-      - id: end-of-file-fixer # Ensure files end with a newline.
-      - id: mixed-line-ending
-      - id: trailing-whitespace
+    -   id: check-added-large-files
+    -   id: check-case-conflict # Check for files with names that differ only in case.
+    -   id: check-executables-have-shebangs
+    -   id: check-shebang-scripts-are-executable
+    -   id: check-toml
+    -   id: check-yaml
+    -   id: end-of-file-fixer # Ensure files end with a newline.
+    -   id: mixed-line-ending
+    -   id: trailing-whitespace
         args: ["--markdown-linebreak-ext", "md"] # Preserve Markdown hard line breaks.
 
-  - repo: https://github.com/RobertCraigie/pyright-python
+-   repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.408
     hooks:
-      - id: pyright # Type-checking
+    -   id: pyright # Type-checking
         # Explicit args are needed to avoid pyright from using the system Python
         args: ["-p", "pyproject.toml", "--pythonpath", ".venv/bin/python"]
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
+-   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.4
     hooks:
-      - id: ruff-check # Lint code
-      - id: ruff-format # Format code
+    -   id: ruff-check # Lint code
+    -   id: ruff-format # Format code
 
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.7
+-   repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.10.8
     hooks:
-      - id: uv-lock # Update the uv lockfile
+    -   id: uv-lock # Update the uv lockfile

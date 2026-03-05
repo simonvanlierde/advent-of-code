@@ -5,41 +5,28 @@ import numpy as np
 
 ### Main parsing utilities
 def text_to_array_grid(data: str) -> np.ndarray:
-    """Convert raw text data directly to 2D numpy array."""
-    # Parse lines
-    lines = data.strip().splitlines()
+    """Convert grid-like text to 2D numpy array."""
+    return np.array([list(line) for line in data.strip().splitlines()], dtype="U1")
 
-    # Get array dimensions
-    height = len(lines)
-    width = max(len(line) for line in lines)
 
-    # Create array of single characters (dtype 'U1') and fill it
-    arr = np.full((height, width), fill_value=" ", dtype="U1")
-    for i, line in enumerate(lines):
-        for j, char in enumerate(line):
-            arr[i, j] = char
-
-    return arr
+def map_grid_values[T_in, T_out](arr: np.ndarray[tuple[int, int], np.dtype], mapping: dict[T_in, T_out]) -> np.ndarray:
+    """Map values in a 2D array to integers using a provided mapping."""
+    return np.vectorize(mapping.get)(arr)
 
 
 def shift2d(arr: np.ndarray[tuple[int, int], np.dtype], dx: int = 0, dy: int = 0, *, fill_value: int = 0) -> np.ndarray:
     """Shift 2D array by (dx, dy) without wrapping."""
-    # Initialize output array
-    shifted = np.zeros(arr.shape, dtype=arr.dtype)
+    h, w = arr.shape
+    shifted = np.full_like(arr, fill_value)
 
-    # Fill with fill_value if needed
-    if fill_value != 0:
-        shifted.fill(fill_value)
+    src_y0, src_y1 = max(0, dy), h + min(0, dy)
+    src_x0, src_x1 = max(0, dx), w + min(0, dx)
+    dst_y0, dst_y1 = max(0, -dy), h - max(0, dy)
+    dst_x0, dst_x1 = max(0, -dx), w - max(0, dx)
 
-    # Determine slices for the original and shifted arrays
-    orig_y = slice(max(0, dy), None if dy >= 0 else dy)
-    orig_x = slice(max(0, dx), None if dx >= 0 else dx)
+    if src_y0 < src_y1 and src_x0 < src_x1:
+        shifted[dst_y0:dst_y1, dst_x0:dst_x1] = arr[src_y0:src_y1, src_x0:src_x1]
 
-    shifted_y = slice(max(0, -dy), None if dy <= 0 else -dy)
-    shifted_x = slice(max(0, -dx), None if dx <= 0 else -dx)
-
-    # Fill the shifted array with values from the original array
-    shifted[shifted_y, shifted_x] = arr[orig_y, orig_x]
     return shifted
 
 

@@ -17,6 +17,11 @@ def map_grid_values_to_int(grid: dict[complex, str]) -> dict[complex, int]:
     return {k: int(v) for k, v in grid.items()}
 
 
+def map_grid_values[T_in, T_out](grid: dict[complex, T_in], mapping: dict[T_in, T_out]) -> dict[complex, T_out]:
+    """Map the values of a grid using a provided mapping."""
+    return {k: mapping[v] for k, v in grid.items()}
+
+
 def print_grid(grid: dict[complex, str] | dict[complex, int], *, reverse_y_axis: bool = True) -> None:
     """Print the grid, with the option to reverse the y-axis."""
     grid_height = int(max(p.imag for p in grid) - min(p.imag for p in grid) + 1)
