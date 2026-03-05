@@ -26,6 +26,7 @@ dependencies = [
 2015 = [
     { name = "jq" },
     { name = "networkx" },
+    { name = "scipy" },
 ]
 2025 = [
     { name = "pandas" },
@@ -52,6 +53,7 @@ requires-dist = [
 2015 = [
     { name = "jq", specifier = ">=1.10.0" },
     { name = "networkx", specifier = ">=3.6.1" },
+    { name = "scipy", specifier = ">=1.17.1" },
 ]
 2025 = [
     { name = "pandas", specifier = ">=2.3.3" },
