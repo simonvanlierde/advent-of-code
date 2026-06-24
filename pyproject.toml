@@ -16,7 +16,7 @@
 
 [build-system]
   build-backend = "uv_build"
-  requires      = ["uv_build>=0.10.7,<0.11.0"]
+  requires      = ["uv_build>=0.11.0,<0.12.0"]
 
 [dependency-groups]
   2015 = [
@@ -25,7 +25,7 @@
     "scipy>=1.17.1",
 ]
   2025 = ["pandas>=2.3.3", "scipy>=1.16.3", "seaborn>=0.13.2", "shapely>=2.1.2"]
-  dev  = ["pre-commit>=4.5.0", "ruff>=0.14.10", "ty>=0.0.20"]
+  dev  = ["pre-commit>=4.5.0", "pyright>=1.1.410", "pytest>=8.3.0", "ruff>=0.14.10", "ty>=0.0.20"]
 
 [tool.ruff]
   fix            = true
@@ -63,6 +63,21 @@
     [tool.ruff.lint.pylint]
       allow-magic-value-types = ["int", "str"]
       max-args                = 10
+
+  [tool.ruff.lint.per-file-ignores]
+    # Docstrings and magic values are fine in tests; tests are not an importable package.
+    "tests/*" = ["D100", "D103", "INP001", "PLR2004"]
+    # The day template is scaffolding: unfinished stubs and TODO markers are expected.
+    "notebooks/templates/*" = ["ARG001", "FIX002", "TD002", "TD003"]
+
+[tool.pyright]
+  pythonVersion    = "3.14"
+  typeCheckingMode = "standard"
+  venvPath         = "."
+  venv             = ".venv"
+
+[tool.pytest.ini_options]
+  testpaths = ["tests"]
 
 [tool.uv.build-backend]
   module-name = "aoc_utils"
