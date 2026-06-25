@@ -15,7 +15,7 @@ playground for trying out algorithms, libraries, and tooling.
 
 - **Modern Python tooling** — [uv](https://docs.astral.sh/uv/) for packaging and reproducible
   environments, [Ruff](https://docs.astral.sh/ruff/) for linting and formatting (the full rule
-  set), [pyright](https://github.com/microsoft/pyright) for type checking, and a
+  set), [ty](https://github.com/astral-sh/ty) for type checking, and a
   [pre-commit](https://pre-commit.com/) pipeline that also runs secret scanning and spell checks.
 - **Typed, reusable utilities** — common logic is factored into the installable
   [`aoc_utils`](src/aoc_utils) package rather than copy-pasted between notebooks.

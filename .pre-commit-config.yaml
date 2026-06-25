@@ -36,12 +36,10 @@ repos:
     -   id: trailing-whitespace
         args: ["--markdown-linebreak-ext", "md"] # Preserve Markdown hard line breaks.
 
--   repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.410
+-   repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.53
     hooks:
-    -   id: pyright # Type-checking
-        # Explicit args are needed to avoid pyright from using the system Python
-        args: ["-p", "pyproject.toml", "--pythonpath", ".venv/bin/python"]
+    -   id: ty # Type-checking
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.19

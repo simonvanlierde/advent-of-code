@@ -25,7 +25,7 @@
     "scipy>=1.17.1",
 ]
   2025 = ["pandas>=2.3.3", "scipy>=1.16.3", "seaborn>=0.13.2", "shapely>=2.1.2"]
-  dev  = ["pre-commit>=4.5.0", "pyright>=1.1.410", "pytest>=8.3.0", "ruff>=0.14.10", "ty>=0.0.20"]
+  dev  = ["pre-commit>=4.5.0", "pytest>=8.3.0", "ruff>=0.14.10", "ty>=0.0.20"]
 
 [tool.ruff]
   fix            = true
@@ -70,11 +70,11 @@
     # The day template is scaffolding: unfinished stubs and TODO markers are expected.
     "notebooks/templates/*" = ["ARG001", "FIX002", "TD002", "TD003"]
 
-[tool.pyright]
-  pythonVersion    = "3.14"
-  typeCheckingMode = "standard"
-  venvPath         = "."
-  venv             = ".venv"
+[tool.ty.environment]
+  python-version = "3.14"
+
+[tool.ty.src]
+  include = ["src", "tests"]
 
 [tool.pytest.ini_options]
   testpaths = ["tests"]
