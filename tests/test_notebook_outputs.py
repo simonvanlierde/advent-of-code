@@ -7,8 +7,10 @@ import pytest
 
 NOTEBOOKS = sorted((Path(__file__).parents[1] / "notebooks").rglob("*.ipynb"))
 
-# Answers, timings and small example traces stay under this; a printed input grid does not.
+# Answers, timings and small example traces stay under these; a printed input does not.
+# The character cap catches inputs that are one long line (2015 day 1).
 MAX_OUTPUT_LINES = 30
+MAX_OUTPUT_CHARS = 2000
 
 
 def _output_text(output: dict) -> str:
@@ -23,6 +25,9 @@ def test_no_long_text_outputs(notebook: Path) -> None:
         index
         for index, cell in enumerate(cells)
         for output in cell.get("outputs", [])
-        if len(_output_text(output).splitlines()) > MAX_OUTPUT_LINES
+        if len((text := _output_text(output)).splitlines()) > MAX_OUTPUT_LINES or len(text) > MAX_OUTPUT_CHARS
     ]
-    assert not long_cells, f"cells {long_cells} print more than {MAX_OUTPUT_LINES} lines; clear them before committing"
+    assert not long_cells, (
+        f"cells {long_cells} print more than {MAX_OUTPUT_LINES} lines or {MAX_OUTPUT_CHARS} characters; "
+        "clear them before committing"
+    )
