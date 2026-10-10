@@ -23,8 +23,10 @@ playground for trying out algorithms, libraries, and tooling.
   invites it I compare approaches. See [2015 day 9](notebooks/2015/9.ipynb), which solves the
   traveling-salesman variant four ways (brute-force, recursive, `networkx`, and a Held–Karp
   dynamic program) and times each.
-- **Correctness checks** — every solution is validated against the puzzle's worked example via
-  `check_example` before the real answer is submitted.
+- **Correctness checks** — 36 of the 58 notebooks test their solution against the puzzle's
+  worked example before submitting the real answer: 2015 (except day 16) through
+  `check_example`, 2023 and 2025 by comparing against `puzzle.examples` directly. The 2024
+  notebooks do not check the example.
 
 ## Progress
 
