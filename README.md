@@ -7,25 +7,26 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 My solutions to the annual [Advent of Code](https://adventofcode.com/) puzzles, written in
-**Python**. I use them as deliberate practice in writing clean, fully typed, and
-performance-aware code — each day is a small, self-contained problem, which makes it a good
-playground for trying out algorithms, libraries, and tooling.
+**Python**. I use them to practice writing clean, fully typed code that pays attention to
+speed. Each day is a small problem that stands on its own, so it's a good place to try out
+algorithms, libraries and tooling.
 
 ## What this repo demonstrates
 
-- **Modern Python tooling** — [uv](https://docs.astral.sh/uv/) for packaging and reproducible
+- **Modern Python tooling.** [uv](https://docs.astral.sh/uv/) for packaging and reproducible
   environments, [Ruff](https://docs.astral.sh/ruff/) for linting and formatting (the full rule
-  set), [ty](https://github.com/astral-sh/ty) for type checking, and a
-  [pre-commit](https://pre-commit.com/) pipeline that also runs secret scanning and spell checks.
-- **Typed, reusable utilities** — common logic is factored into the installable
-  [`aoc_utils`](src/aoc_utils) package rather than copy-pasted between notebooks.
-- **Performance awareness** — solutions are benchmarked with `time_solution`, and where a problem
-  invites it I compare approaches. See [2015 day 9](notebooks/2015/9.ipynb), which solves the
+  set), [ty](https://github.com/astral-sh/ty) for type checking. A
+  [pre-commit](https://pre-commit.com/) pipeline runs these and also scans for secrets and
+  checks spelling.
+- **Typed, reusable utilities.** Shared logic lives in the installable
+  [`aoc_utils`](src/aoc_utils) package, so I don't copy and paste it between notebooks.
+- **Attention to speed.** I time solutions with `time_solution`, and where a problem invites
+  it I compare approaches. See [2015 day 9](notebooks/2015/9.ipynb): it solves the
   traveling-salesman variant four ways (brute-force, recursive, `networkx`, and a Held–Karp
   dynamic program) and times each.
-- **Correctness checks** — 36 of the 58 notebooks test their solution against the puzzle's
-  worked example before submitting the real answer: 2015 (except day 16) through
-  `check_example`, 2023 and 2025 by comparing against `puzzle.examples` directly. The 2024
+- **Correctness checks.** 36 of the 58 notebooks test their solution against the puzzle's
+  worked example before submitting the real answer. 2015 (except day 16) does this through
+  `check_example`, and 2023 and 2025 compare against `puzzle.examples` directly. The 2024
   notebooks do not check the example.
 
 ## Progress
@@ -39,16 +40,16 @@ playground for trying out algorithms, libraries, and tooling.
 
 ## The `aoc_utils` package
 
-A small, fully typed helper library shared across the notebooks:
+A small, fully typed helper library that the notebooks share:
 
-- [`dict_grid`](src/aoc_utils/dict_grid.py) — parse 2D text grids into `dict[complex, str]`,
-  using complex numbers as coordinates so that neighbour math is just addition.
-- [`numpy_grid`](src/aoc_utils/numpy_grid.py) — the NumPy counterpart, with array shifting and
+- [`dict_grid`](src/aoc_utils/dict_grid.py): parses 2D text grids into `dict[complex, str]`.
+  It uses complex numbers as coordinates, so finding a neighbour is just addition.
+- [`numpy_grid`](src/aoc_utils/numpy_grid.py): the NumPy version, with array shifting and
   convolution kernels for fast neighbour counting.
-- [`perf_check`](src/aoc_utils/perf_check.py) — `check_example` for correctness and
+- [`perf_check`](src/aoc_utils/perf_check.py): `check_example` for correctness and
   `time_solution` for benchmarking.
 
-The utilities are covered by unit tests under [`tests/`](tests).
+Unit tests for the utilities are under [`tests/`](tests).
 
 ## Structure
 
@@ -60,10 +61,10 @@ src/aoc_utils/         # shared, typed helper package
 tests/                 # unit tests for aoc_utils
 ```
 
-Each day is solved in a Jupyter notebook. Puzzle inputs are fetched and answers submitted with
-the [advent-of-code-data](https://pypi.org/project/advent-of-code-data/) package, so no puzzle
-inputs are committed to this repository (per the Advent of Code
-[guidelines](https://adventofcode.com/about#faq_copying)).
+I solve each day in a Jupyter notebook. The
+[advent-of-code-data](https://pypi.org/project/advent-of-code-data/) package fetches the
+puzzle inputs and submits the answers. So no puzzle inputs are committed to this repository,
+as the Advent of Code [guidelines](https://adventofcode.com/about#faq_copying) ask.
 
 ## Quickstart
 
