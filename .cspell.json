@@ -51,6 +51,5 @@
     "vecs",
     "vizslas"
   ],
-  "ignoreWords": ["Shareon", "aeiou", "Karp", "abcdffaa"],
-  "import": ["~/.config/cspell/cspell.config.yaml"]
+  "ignoreWords": ["Shareon", "aeiou", "Karp", "abcdffaa"]
 }
