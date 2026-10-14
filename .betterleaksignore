@@ -1,0 +1,5 @@
+# Advent of Code 2015 day 11 is a password puzzle: its notebook holds puzzle
+# strings, not credentials. Fingerprints are commit:file:rule:line.
+3a0c60de1d71440a718db482cf69c95949f5bdd4:notebooks/2015/11.ipynb:generic-password:106
+da3ba08dddfcb7fc0ab2c28b125ce41433499aa4:notebooks/2015/11.ipynb:generic-password:106
+5429d4f3ecd8e2c0761b183acec862e6378eb01f:solutions/2015/11.ipynb:generic-password:111
