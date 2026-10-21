@@ -52,6 +52,7 @@
       "D107", # undocumented-public-init (__init__ methods are often self-explanatory)
 
       # Project-specific ignores
+      "CPY001", # puzzle solutions carry no copyright header; LICENSE covers the repo
       "S101", # assert is used for checking example solutions
       "S311", # no cryptographic randomness needed for AoC
       "T201", # print is used for showing results
