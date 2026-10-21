@@ -1,6 +1,6 @@
 repos:
 -   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.9.0
+    rev: v0.10.0
     hooks:
     -   id: pre-commit-update # Autoupdate pre-commit hooks
 
@@ -17,7 +17,7 @@ repos:
         -   mdformat-gfm>=1.0.0 # Support GitHub Flavored Markdown.
 
 -   repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v10.0.1
+    rev: v10.3.0
     hooks:
     -   id: cspell # Spell check files.
         args: ["--config", ".cspell.json"]
@@ -37,17 +37,17 @@ repos:
         args: ["--markdown-linebreak-ext", "md"] # Preserve Markdown hard line breaks.
 
 -   repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.53
+    rev: v0.0.87
     hooks:
     -   id: ty # Type-checking
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.19
+    rev: v0.17.0
     hooks:
     -   id: ruff-check # Lint code
     -   id: ruff-format # Format code
 
 -   repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.11.24
+    rev: 0.13.1
     hooks:
     -   id: uv-lock # Update the uv lockfile
