@@ -1,6 +1,6 @@
 [project]
   dependencies = [
-    "advent-of-code-data[nb]>=2.1.1",
+    "advent-of-code-data[nb]>=2.2.0",
     "ipykernel>=7.4.0",
     "jupyter>=1.1.1",
     "numpy>=2.5.4",
