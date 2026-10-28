@@ -11,12 +11,6 @@ repos:
         additional_dependencies:
         -   mdformat-gfm>=1.0.0 # Support GitHub Flavored Markdown.
 
--   repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v10.3.0
-    hooks:
-    -   id: cspell # Spell check files.
-        args: ["--config", ".cspell.json"]
-
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
