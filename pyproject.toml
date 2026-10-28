@@ -20,12 +20,12 @@
 
 [dependency-groups]
   2015 = [
-    "jq>=1.12.0",
+    "jq>=1.13.0",
     "networkx>=3.7",
     "scipy>=1.18.1",
 ]
   2025 = ["pandas>=3.0.6", "scipy>=1.18.1", "seaborn>=0.13.2", "shapely>=2.2.0"]
-  dev  = ["prek>=0.5.7", "pytest>=8.3.0", "ruff>=0.17.0", "ty>=0.0.87"]
+  dev  = ["prek>=0.5.7", "pytest>=8.3.0", "ruff>=0.17.1", "ty>=0.0.90"]
 
 [tool.ruff]
   fix            = true
