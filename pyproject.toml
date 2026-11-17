@@ -24,8 +24,8 @@
     "networkx>=3.7",
     "scipy>=1.18.1",
 ]
-  2025 = ["pandas>=3.0.6", "scipy>=1.18.1", "seaborn>=0.13.2", "shapely>=2.2.0"]
-  dev  = ["prek>=0.5.7", "pytest>=8.3.0", "ruff>=0.17.1", "ty>=0.0.90"]
+  2025 = ["pandas>=3.1.0", "scipy>=1.18.1", "seaborn>=0.13.2", "shapely>=2.2.0"]
+  dev  = ["prek>=0.5.10", "pytest>=9.2.0", "ruff>=0.17.3", "ty>=0.0.97"]
 
 [tool.ruff]
   fix            = true
