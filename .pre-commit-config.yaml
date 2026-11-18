@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/betterleaks/betterleaks
-    rev: 81aff7a638638aae3a659845d089043e1d8fe9ac # frozen: v1.9.0
+    rev: 8d77e1712fb06fd14444cc648686f1d5655e28a8 # frozen: v1.10.0
     hooks:
     -   id: betterleaks # Check for secrets
 
@@ -26,17 +26,17 @@ repos:
         args: ["--markdown-linebreak-ext", "md"] # Preserve Markdown hard line breaks.
 
 -   repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.93
+    rev: v0.0.100
     hooks:
     -   id: ty # Type-checking
 
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.3
+    rev: v0.17.4
     hooks:
     -   id: ruff-check # Lint code
     -   id: ruff-format # Format code
 
 -   repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.13.6
+    rev: 0.13.7
     hooks:
     -   id: uv-lock # Update the uv lockfile
