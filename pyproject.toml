@@ -3,7 +3,7 @@
     "advent-of-code-data[nb]>=2.2.0",
     "ipykernel>=7.4.0",
     "jupyter>=1.1.1",
-    "numpy>=2.5.4",
+    "numpy>=2.5.5",
     "tqdm>=4.70.1",
   ]
   description = "My advent of code solutions"
